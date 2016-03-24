@@ -132,14 +132,19 @@ static void sensor_timeout_handler(void * p_context)
 	step_count[0]=3;
 	step_count[1]=batt_rate;
 	step_count[4]=batt_rate;
-	((uint8_t *)(&temp))[0]=1;
 	ble_step_count_update(&m_ble_wechat, step_count );
+	step_count[0]=1;
+	step_count[1]=batt_rate;
+	step_count[2]=0x27;
+	step_count[3]=0x0;
+	ble_wechat_target_update(&m_ble_wechat, step_count );
 	
 	//update hrs
 	//can contact
 	ble_hrs_sensor_contact_detected_update(&m_hrs, true);
 
 err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, heart_rate);
+
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
         (err_code != BLE_ERROR_NO_TX_BUFFERS) &&

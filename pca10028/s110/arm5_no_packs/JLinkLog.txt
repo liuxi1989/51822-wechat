@@ -1,0 +1,28 @@
+
+T2208 000:312 SEGGER J-Link V5.10d Log File (0003ms, 0294ms total)
+T2208 000:312 DLL Compiled: Dec  9 2015 12:49:14 (0003ms, 0294ms total)
+T2208 000:312 Logging started @ 2016-03-24 10:17 (0003ms, 0294ms total)
+T2208 000:315 JLINK_SetWarnOutHandler(...) (0000ms, 0294ms total)
+T2208 000:315 JLINK_OpenEx(...)
+Firmware: J-Link ARM-OB STM32 compiled Aug 22 2012 19:52:04
+Hardware: V7.00
+S/N: 20090928
+Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFull  returns O.K. (0275ms, 0569ms total)
+T2208 000:590 JLINK_SetErrorOutHandler(...) (0000ms, 0569ms total)
+T2208 000:590 JLINK_ExecCommand("ProjectFile = "E:\ÏîÄ¿\51822\test\nRF51_SDK_10\examples\ble_peripheral\ble_app_template\pca10028\s110\arm5_no_packs\JLinkSettings.ini"", ...)Device "ARM7" selected.  returns 0x00 (0004ms, 0573ms total)
+T2208 000:599 JLINK_ExecCommand("Device = nRF51422_xxAC", ...)Device "ARM7" selected.  returns 0x00 (0002ms, 0575ms total)
+T2208 000:601 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0575ms total)
+T2208 000:601 JLINK_GetHardwareVersion()  returns 0x11170 (0000ms, 0575ms total)
+T2208 000:601 JLINK_GetDLLVersion()  returns 51004 (0000ms, 0575ms total)
+T2208 000:601 JLINK_GetFirmwareString(...) (0000ms, 0575ms total)
+T2208 000:614 JLINK_GetDLLVersion()  returns 51004 (0000ms, 0575ms total)
+T2208 000:614 JLINK_GetCompileDateTime() (0000ms, 0575ms total)
+T2208 000:617 JLINK_GetFirmwareString(...) (0000ms, 0575ms total)
+T2208 000:619 JLINK_GetHardwareVersion()  returns 0x11170 (0000ms, 0575ms total)
+T2208 000:633 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0003ms, 0578ms total)
+T2208 000:636 JLINK_SetMaxSpeed() >0x108 TIF>Found SWD-DP with ID 0x0BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF>RESET (pin 15) high, but should be low. Please check target hardware. >0x108 TIF>Found SWD-DP with ID 0x0BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> (0293ms, 0871ms total)
+T2208 000:929 JLINK_GetSpeed()  returns 0xC8 (0000ms, 0871ms total)
+T2208 000:929 JLINK_GetId() >0x108 TIF>Found SWD-DP with ID 0x0BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF>RESET (pin 15) high, but should be low. Please check target hardware. >0x108 TIF>Found SWD-DP with ID 0x0BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF>  returns 0x00000000 (0294ms, 1165ms total)
+T2208 003:050 JLINK_Close() (0001ms, 1166ms total)
+T2208 003:050  (0001ms, 1166ms total)
+T2208 003:050 Closed (0001ms, 1166ms total)

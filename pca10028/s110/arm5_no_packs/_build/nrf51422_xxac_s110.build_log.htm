@@ -1,0 +1,75 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.13.0.0
+Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: eric Win, Win, LIC=FQQQD-89G9A-NTT3G-V1PT9-V1YVI-LRP5B
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.13.0.0
+Toolchain Path:  d:\develop\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         
+Dialog DLL:      
+Target DLL:      Segger\JL2CM3.dll V2.99.11.0
+Dialog DLL:      TARMCM1.DLL V1.9.0.0
+ 
+<h2>Project:</h2>
+E:\项目\51822\test\nRF51_SDK_10\examples\ble_peripheral\ble_app_template\pca10028\s110\arm5_no_packs\ble_app_template_s110_pca10028.uvprojx
+Project File Date:  03/23/2016
+
+<h2>Output:</h2>
+Build target 'nrf51422_xxac_s110'
+compiling main.c...
+..\..\..\main.c(140): warning:  #223-D: function "ble_wechat_target_update" declared implicitly
+        ble_wechat_target_update(&m_ble_wechat, step_count );
+..\..\..\main.c(127): warning:  #177-D: variable "temp" was declared but never referenced
+        static uint32_t temp=0;
+..\..\..\main.c(239): warning:  #550-D: variable "err_code" was set but never used
+        uint32_t err_code;
+..\..\..\main.c(799): warning:  #550-D: variable "temp" was set but never used
+      unsigned char temp;
+..\..\..\main.c(773): warning:  #177-D: function "buttons_leds_init" was declared but never referenced
+  static void buttons_leds_init(bool * p_erase_bonds)
+..\..\..\main.c: 5 warnings, 0 errors
+linking...
+Program Size: Code=28432 RO-data=380 RW-data=488 ZI-data=6848  
+FromELF: creating hex file...
+".\_build\nrf51422_xxac_s110.axf" - 0 Error(s), 5 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM::CMSIS:CORE:4.3.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 4.3.0
+
+Package Vendor: NordicSemiconductor
+                http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/NordicSemiconductor.nRF_DeviceFamilyPack.8.2.0.pack
+                NordicSemiconductor::Device:Startup:8.2.0
+                Nordic Semiconductor nRF ARM devices Device Family Pack.
+   * Component: Startup Version: 8.2.0
+
+<h2>Collection of Component include folders:</h2>
+  E:\项目\51822\test\nRF51_SDK_10\examples\ble_peripheral\ble_app_template\pca10028\s110\arm5_no_packs\RTE
+  d:\develop\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  d:\develop\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.2.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:4.3.0
+
+   * Component: NordicSemiconductor::Device:Startup:8.2.0
+      Source file:   Device\Source\arm\arm_startup_nrf51.s
+      Source file:   Device\Source\system_nrf51.c
+      Include file:  Device\Include\system_nrf51.h
+</pre>
+</body>
+</html>

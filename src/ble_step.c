@@ -31,6 +31,10 @@ static uint8_t mac_address [BLE_GAP_ADDR_LEN];
 static ble_gatts_char_handles_t mac_address_handles;
 static ble_srv_security_mode_t 	mac_address_attr_md; 
 
+static ble_gatts_char_handles_t target_handles;
+static ble_srv_security_mode_t 	target_attr_md;
+
+
 
 
 //read mac address
@@ -86,7 +90,11 @@ static void on_write(ble_step_t * p_step, ble_evt_t * p_ble_evt)
 {
     if (p_step->is_notification_supported)
     {
+    	
+		
         ble_gatts_evt_write_t * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
+
+		SEGGER_RTT_printf(0,"on_write:len=%d\r\n",p_evt_write->len);
 
         if (
             (p_evt_write->handle == p_step->step_count_handles.cccd_handle)
@@ -256,7 +264,7 @@ static uint32_t step_count_char_add(ble_step_t * p_step, const ble_step_init_t *
 }
 
 //eric-han:for wehcat fec9
-static uint32_t char_add(uint16_t  uuid,uint8_t len,uint8_t * p_value,
+static uint32_t read_char_add(uint16_t  uuid,uint8_t len,uint8_t * p_value,
                          const ble_srv_security_mode_t * step_attr_md,
                          ble_gatts_char_handles_t      * p_handles,ble_step_t * p_step)
 {
@@ -302,6 +310,53 @@ static uint32_t char_add(uint16_t  uuid,uint8_t len,uint8_t * p_value,
     return sd_ble_gatts_characteristic_add(p_step->service_handle, &char_md, &attr_char_value, p_handles);
 }
 
+//------------------------------------------------------------
+//eric-han:for wehcat fea2
+static uint32_t indicate_char_add(uint16_t  uuid,uint8_t len,uint8_t * p_value,
+                         const ble_srv_security_mode_t * step_attr_md,
+                         ble_gatts_char_handles_t      * p_handles,ble_step_t * p_step)
+{
+    ble_uuid_t          ble_uuid;
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_gatts_attr_md_t attr_md;
+	uint8_t temp=100;
+
+    memset(&char_md, 0, sizeof(char_md));
+
+	char_md.char_props.write = 1;
+	char_md.char_props.indicate= 1;
+    char_md.char_props.read  = 1;
+    char_md.p_char_user_desc = NULL;
+    char_md.p_char_pf        = NULL;
+    char_md.p_user_desc_md   = NULL;
+    char_md.p_cccd_md        = NULL;
+    char_md.p_sccd_md        = NULL;
+
+    BLE_UUID_BLE_ASSIGN(ble_uuid, uuid);
+
+    memset(&attr_md, 0, sizeof(attr_md));
+
+    attr_md.read_perm  = step_attr_md->read_perm;
+    attr_md.write_perm = step_attr_md->write_perm;
+    attr_md.vloc       = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth    = 0;
+    attr_md.wr_auth    = 0;
+    attr_md.vlen       = 0;
+
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    attr_char_value.p_uuid    = &ble_uuid;
+    attr_char_value.p_attr_md = &attr_md;
+    attr_char_value.init_len  = len;
+    attr_char_value.init_offs = 0;
+    attr_char_value.max_len   = len;
+    attr_char_value.p_value   = p_value;
+
+    return sd_ble_gatts_characteristic_add(p_step->service_handle, &char_md, &attr_char_value, p_handles);
+}
+
+
 //--------------------------------------------------
 uint32_t ble_step_init(ble_step_t * p_step, const ble_step_init_t * p_step_init)
 {
@@ -312,8 +367,8 @@ uint32_t ble_step_init(ble_step_t * p_step, const ble_step_init_t * p_step_init)
     
     uint32_t   err_code;
     ble_uuid_t ble_uuid;
-	uint8_t temp=101;
-
+	uint8_t target[4]={0};
+	
     // Initialize service structure
     p_step->evt_handler               = p_step_init->evt_handler;
     p_step->conn_handle               = BLE_CONN_HANDLE_INVALID;
@@ -330,12 +385,21 @@ uint32_t ble_step_init(ble_step_t * p_step, const ble_step_init_t * p_step_init)
     }
 	get_mac_addr(mac_address);
 
-    //mac address chat
+    //mac address Characteristic
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&mac_address_attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&mac_address_attr_md.write_perm);
-    char_add(BLE_UUID_WECHAT_MACADD,BLE_GAP_ADDR_LEN,mac_address,
+    read_char_add(BLE_UUID_WECHAT_MACADD,BLE_GAP_ADDR_LEN,mac_address,
                             &mac_address_attr_md,
                             &mac_address_handles,p_step);
+	//target Characteristic
+	target[0]=1;
+	target[1]=0x10;
+	target[2]=0x27;
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&target_attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&target_attr_md.write_perm);
+    indicate_char_add(BLE_UUID_WECHAT_TARGET,4,target,
+                            &target_attr_md,
+                            &target_handles,p_step);
     // Add battery level characteristic
     return step_count_char_add(p_step, p_step_init);
 }
@@ -397,3 +461,45 @@ uint32_t ble_step_count_update(ble_step_t * p_step, uint8_t* step_count)
     return err_code;
 
 }
+//---------------------------------------------------------------
+uint32_t ble_wechat_target_update(ble_step_t * p_step, uint8_t* target)
+{
+	 if (p_step == NULL)
+    {
+        return NRF_ERROR_NULL;
+    }
+    uint32_t err_code = NRF_SUCCESS;
+    ble_gatts_value_t gatts_value;
+    { 
+        // Initialize value struct.
+        memset(&gatts_value, 0, sizeof(gatts_value));
+
+        gatts_value.len     =4;// sizeof(uint8_t);
+        gatts_value.offset  = 0;
+        gatts_value.p_value =target;// &step_count;
+        // Update database.
+        err_code = sd_ble_gatts_value_set(p_step->conn_handle,
+                                          target_handles.value_handle,
+                                          &gatts_value);
+       
+        // Send value if connected and notifying.
+        {
+            ble_gatts_hvx_params_t hvx_params;
+
+            memset(&hvx_params, 0, sizeof(hvx_params));
+
+            hvx_params.handle = target_handles.value_handle;
+            hvx_params.type   = BLE_GATT_HVX_INDICATION;
+            hvx_params.offset = gatts_value.offset;
+            hvx_params.p_len  = &gatts_value.len;
+            hvx_params.p_data = gatts_value.p_value;
+
+            err_code = sd_ble_gatts_hvx(p_step->conn_handle, &hvx_params);
+        }
+    }
+			SEGGER_RTT_printf(0,"0x%x,0x%x\r\n",target[0],target[1]);
+
+    return err_code;
+
+}
+
