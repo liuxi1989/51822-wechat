@@ -15,7 +15,7 @@
 .\_build\ble_conn_params.o: ..\..\..\..\..\..\components\ble\common\ble_srv_common.h
 .\_build\ble_conn_params.o: d:\develop\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\ble_conn_params.o: ..\..\..\..\..\..\components\libraries\util\app_util.h
-.\_build\ble_conn_params.o: d:\develop\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.2.0\Device\Include\compiler_abstraction.h
+.\_build\ble_conn_params.o: ..\..\..\..\..\..\components\device\compiler_abstraction.h
 .\_build\ble_conn_params.o: d:\develop\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\_build\ble_conn_params.o: ..\..\..\..\..\..\components\libraries\util\nordic_common.h
 .\_build\ble_conn_params.o: ..\..\..\..\..\..\components\softdevice\s110\headers\ble_hci.h

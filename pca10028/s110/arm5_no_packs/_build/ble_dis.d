@@ -5,7 +5,7 @@
 .\_build\ble_dis.o: d:\develop\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\_build\ble_dis.o: ..\..\..\..\..\..\components\softdevice\s110\headers\ble_types.h
 .\_build\ble_dis.o: ..\..\..\..\..\..\components\libraries\util\app_util.h
-.\_build\ble_dis.o: d:\develop\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.2.0\Device\Include\compiler_abstraction.h
+.\_build\ble_dis.o: ..\..\..\..\..\..\components\device\compiler_abstraction.h
 .\_build\ble_dis.o: ..\..\..\..\..\..\components\softdevice\s110\headers\ble.h
 .\_build\ble_dis.o: ..\..\..\..\..\..\components\softdevice\s110\headers\ble_ranges.h
 .\_build\ble_dis.o: ..\..\..\..\..\..\components\softdevice\s110\headers\ble_gap.h

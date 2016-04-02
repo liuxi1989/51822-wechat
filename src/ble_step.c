@@ -461,7 +461,7 @@ uint32_t ble_step_count_update(ble_step_t * p_step, uint8_t* step_count)
     return err_code;
 
 }
-//---------------------------------------------------------------
+//---------------------------------------------------------------------------------
 uint32_t ble_wechat_target_update(ble_step_t * p_step, uint8_t* target)
 {
 	 if (p_step == NULL)
@@ -497,9 +497,8 @@ uint32_t ble_wechat_target_update(ble_step_t * p_step, uint8_t* target)
             err_code = sd_ble_gatts_hvx(p_step->conn_handle, &hvx_params);
         }
     }
-			SEGGER_RTT_printf(0,"0x%x,0x%x\r\n",target[0],target[1]);
+			//SEGGER_RTT_printf(0,"0x%x,0x%x\r\n",target[0],target[1]);
 
     return err_code;
-
 }
 

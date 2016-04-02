@@ -50,6 +50,9 @@
 #include "ble_dis.h"
 #include "ble_hrs.h"
 #include "ble_step.h"
+#include "ble_nus.h"
+
+#include "app_uart.h"
 
 
 
@@ -93,14 +96,41 @@ static ble_hrs_t                         m_hrs;                                 
 
 static ble_step_t 						m_ble_wechat;
 
+static ble_nus_t                        m_nus;                                      /**< Structure to identify the Nordic UART Service. */
+
+
 static uint8_t m_addl_adv_manuf_data [BLE_GAP_ADDR_LEN];
 
 #define	COMPANY_IDENTIFIER						0x0056
 
+#define UART_TX_BUF_SIZE                128                                         /**< UART TX buffer size. */
+#define UART_RX_BUF_SIZE                128                                        /**< UART RX buffer size. */
+
+extern uint8_t rece_flag;//接收到命令的标志
+extern uint8_t buffer[];
+
+//核心数据
+uint16_t hrs_rate=60;//心率
+uint32_t step_count=100;//步数
+uint8_t bat_percent=50;//电池
 
 //eric-han:for timer test
 APP_TIMER_DEF(m_blinky_timer_id);                /**< blinky timer. */
 APP_TIMER_DEF(m_sensor_timer_id);                /**< all sensor timer. */
+//----------------------------------------------------------
+//获得的数据
+static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
+{
+	/*
+   for (uint32_t i = 0; i < length; i++)
+   {
+        while(app_uart_put(p_data[i]) != NRF_SUCCESS);
+	}*/
+	eric_uart_send(p_data,length);
+    //while(app_uart_put('\n') != NRF_SUCCESS);
+//ble_nus_string_send(&m_nus, p_data, length);
+}
+
 //-----------------------------------------------------------
 static void get_mac_addr(uint8_t *p_mac_addr)
 {
@@ -117,33 +147,35 @@ static void get_mac_addr(uint8_t *p_mac_addr)
 		free(p_mac_addr_t);
 		p_mac_addr_t = NULL;
 }
-
 //--------------------------------------------------------------------------------
 static void sensor_timeout_handler(void * p_context)
 {
-	static uint16_t heart_rate=60;
-	static uint16_t batt_rate=10;
-	static uint8_t step_count[7]={0};
+
+	//static uint16_t heart_rate=60;
+	//uint8_t batt_rate=bat_percent;
+	static uint8_t step_wechat[7]={0};
+	static uint8_t target[4]={0};
 	static uint32_t temp=0;
 	uint32_t	err_code;
 	//battery
-	ble_bas_battery_level_update(&m_bas, batt_rate);
+	ble_bas_battery_level_update(&m_bas, bat_percent);//有变化才通知
 	//step
-	step_count[0]=3;
-	step_count[1]=batt_rate;
-	step_count[4]=batt_rate;
-	ble_step_count_update(&m_ble_wechat, step_count );
-	step_count[0]=1;
-	step_count[1]=batt_rate;
-	step_count[2]=0x27;
-	step_count[3]=0x0;
-	ble_wechat_target_update(&m_ble_wechat, step_count );
+	step_wechat[0]=1;
+	memcpy(&step_wechat[1],&step_count,3);
+	//step_count[1]=batt_rate;
+	//step_count[4]=batt_rate;
+	ble_step_count_update(&m_ble_wechat, step_wechat );//有变化才通知
+	target[0]=1;
+	target[1]=0;
+	target[2]=0;
+	target[3]=0;
+	ble_wechat_target_update(&m_ble_wechat, target );
 	
 	//update hrs
 	//can contact
 	ble_hrs_sensor_contact_detected_update(&m_hrs, true);
 
-err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, heart_rate);
+err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, hrs_rate);
 
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
@@ -153,17 +185,18 @@ err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, heart_rate);
     {
         APP_ERROR_HANDLER(err_code);
     }
-
-heart_rate+=2;
-batt_rate++;
-if(heart_rate>200)
-	heart_rate=60;
-if(batt_rate>98)
-	batt_rate=10;
-
+/*
+hrs_rate+=2;
+bat_percent++;
+if(hrs_rate>200)
+	hrs_rate=60;
+if(bat_percent>98)
+	bat_percent=10;
+*/
 
 }
 //-------------------------------------------------------------------------------
+#if 1
 static void blinky_timeout_handler(void * p_context)
 {
 static uint8_t flag=0;
@@ -182,7 +215,7 @@ static uint8_t flag=0;
 		}
 	
 }
-
+#endif
 
 
 /* YOUR_JOB: Declare all services structure your application is using
@@ -193,12 +226,15 @@ static ble_yy_service_t                     m_yys;
 // YOUR_JOB: Use UUIDs for service(s) used in your application.
 static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_HEART_RATE_SERVICE, BLE_UUID_TYPE_BLE},
 								     {BLE_UUID_BATTERY_SERVICE,			  BLE_UUID_TYPE_BLE},
-									 {BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE},
+									 //{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE},
 									 {BLE_UUID_WECHAT_SERVICE, BLE_UUID_TYPE_BLE}
+									// {BLE_UUID_NUS_SERVICE, BLE_UUID_TYPE_VENDOR_BEGIN}
 
 }; /**< Universally unique service identifiers. */
 
-                                   
+//eric-han for nuc
+static ble_uuid_t m_scanrsp_uuids[] = {{BLE_UUID_NUS_SERVICE, BLE_UUID_TYPE_VENDOR_BEGIN}}; 
+
 /**@brief Callback function for asserts in the SoftDevice.
  *
  * @details This function will be called in case of an assert in the SoftDevice.
@@ -268,8 +304,8 @@ static void gap_params_init(void)
     err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_);
     APP_ERROR_CHECK(err_code); */
     //eric-han
-	err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_HEART_RATE_SENSOR_HEART_RATE_BELT);
-		APP_ERROR_CHECK(err_code);
+	//err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_HEART_RATE_SENSOR_HEART_RATE_BELT);
+	//	APP_ERROR_CHECK(err_code);
 
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
 
@@ -341,8 +377,9 @@ static void services_init(void)
     ble_dis_init_t dis_init;
 	ble_hrs_init_t hrs_init;
 	ble_step_init_t step_init;
+	ble_nus_init_t nus_init;
 	uint8_t		body_sensor_location;
-
+    #if 1
 	 // Initialize Battery Service.
     memset(&bas_init, 0, sizeof(bas_init));
 
@@ -362,6 +399,7 @@ static void services_init(void)
     APP_ERROR_CHECK(err_code);
 
     // Initialize Device Information Service.
+    #if 0
     memset(&dis_init, 0, sizeof(dis_init));
 
     ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, (char *)MANUFACTURER_NAME);
@@ -371,6 +409,7 @@ static void services_init(void)
 
     err_code = ble_dis_init(&dis_init);
     APP_ERROR_CHECK(err_code);
+	#endif
 	// Initialize Heart Rate Service.
 	   body_sensor_location = BLE_HRS_BODY_SENSOR_LOCATION_WRIST;
 	
@@ -391,12 +430,12 @@ static void services_init(void)
 	   err_code = ble_hrs_init(&m_hrs, &hrs_init);
 	   APP_ERROR_CHECK(err_code);
 //Initialize wechat service
-		
-	//err_code = ble_wechat_add_service(&m_ble_wechat);
-	//APP_ERROR_CHECK(err_code);
-	//err_code = ble_wechat_add_characteristics(&m_ble_wechat);
-	//APP_ERROR_CHECK(err_code);
-	
+#if 0
+	err_code = ble_wechat_add_service(&m_ble_wechat);
+	APP_ERROR_CHECK(err_code);
+	err_code = ble_wechat_add_characteristics(&m_ble_wechat);
+	APP_ERROR_CHECK(err_code);
+#endif
 memset(&step_init, 0, sizeof(step_init));
 
 // Here the sec level for the Battery Service can be changed/increased.
@@ -413,9 +452,17 @@ step_init.initial_step_count   = 100;
 
 err_code = ble_step_init(&m_ble_wechat, &step_init);
 APP_ERROR_CHECK(err_code);
+#endif
+//nus init
+#if 1
+memset(&nus_init, 0, sizeof(nus_init));
 
-		
+nus_init.data_handler = nus_data_handler;
 
+err_code = ble_nus_init(&m_nus, &nus_init);
+
+APP_ERROR_CHECK(err_code);
+#endif
 }
 
 
@@ -487,7 +534,7 @@ static void application_timers_start(void)
     uint32_t err_code;
     err_code = app_timer_start(m_blinky_timer_id, APP_TIMER_TICKS(2000, APP_TIMER_PRESCALER), NULL);
     APP_ERROR_CHECK(err_code);
-	  err_code = app_timer_start(m_sensor_timer_id, APP_TIMER_TICKS(1000, APP_TIMER_PRESCALER), NULL);
+	 err_code = app_timer_start(m_sensor_timer_id, APP_TIMER_TICKS(1000, APP_TIMER_PRESCALER), NULL);
     APP_ERROR_CHECK(err_code);
 
 }
@@ -580,7 +627,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
     ble_bas_on_ble_evt(&m_bas, p_ble_evt);
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
-
+    ble_nus_on_ble_evt(&m_nus, p_ble_evt);
 	ble_step_on_ble_evt(&m_ble_wechat, p_ble_evt);
     /*YOUR_JOB add calls to _on_ble_evt functions from each service your application is using
     ble_xxs_on_ble_evt(&m_xxs, p_ble_evt);
@@ -733,6 +780,7 @@ static void advertising_init(void)
 {
     uint32_t      err_code;
     ble_advdata_t advdata;
+    ble_advdata_t scanrsp;
 
 	//eric-han:for wechat
 	ble_advdata_manuf_data_t manuf_data;
@@ -741,7 +789,7 @@ static void advertising_init(void)
     memset(&advdata, 0, sizeof(advdata));
 
     advdata.name_type               = BLE_ADVDATA_FULL_NAME;
-    advdata.include_appearance      = true;
+    advdata.include_appearance      = false;
     advdata.flags                   = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
     advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     advdata.uuids_complete.p_uuids  = m_adv_uuids;
@@ -750,8 +798,6 @@ static void advertising_init(void)
     options.ble_adv_fast_enabled  = BLE_ADV_FAST_ENABLED;
     options.ble_adv_fast_interval = APP_ADV_INTERVAL;
     options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
-
-	
 	//----------------------------------------------
 	//eric-han:for wechat
 	manuf_data.company_identifier = COMPANY_IDENTIFIER;
@@ -759,12 +805,91 @@ static void advertising_init(void)
     manuf_data.data.p_data        = m_addl_adv_manuf_data;
     advdata.p_manuf_specific_data = &manuf_data;
 	//-------------------------------------------------
+	
+    memset(&scanrsp, 0, sizeof(scanrsp));
+    scanrsp.uuids_complete.uuid_cnt = sizeof(m_scanrsp_uuids) / sizeof(m_scanrsp_uuids[0]);
+    scanrsp.uuids_complete.p_uuids  = m_scanrsp_uuids;
 
 	
-    err_code = ble_advertising_init(&advdata, NULL, &options, on_adv_evt, NULL);
+    err_code = ble_advertising_init(&advdata, &scanrsp, &options, on_adv_evt, NULL);
     APP_ERROR_CHECK(err_code);
 }
+//-----------------------------------------------
+//串口通讯处理
+void send_data_phone(uint8_t * buffer, uint16_t length)
+{
+	uint32_t       err_code;
+	err_code=ble_nus_string_send(&m_nus, buffer, length);
+	if (err_code != NRF_ERROR_INVALID_STATE)
+	{
+			APP_ERROR_CHECK(err_code);
+	}
+}
+/*
+void uart_event_handle(app_uart_evt_t * p_event)
+{
+    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
+    static uint8_t index = 0;
+    uint32_t       err_code;
 
+   switch (p_event->evt_type)
+    {
+        case APP_UART_DATA_READY:
+            //UNUSED_VARIABLE(app_uart_get(&data_array[index]));
+            index++;
+
+            if ((data_array[index - 1] == '\n') || (index >= (BLE_NUS_MAX_DATA_LEN)))
+            {
+                err_code = ble_nus_string_send(&m_nus, data_array, index);
+                if (err_code != NRF_ERROR_INVALID_STATE)
+                {
+                    APP_ERROR_CHECK(err_code);
+                }
+                
+                index = 0;
+            }
+            break;
+
+        case APP_UART_COMMUNICATION_ERROR:
+            APP_ERROR_HANDLER(p_event->data.error_communication);
+            break;
+
+        case APP_UART_FIFO_ERROR:
+            APP_ERROR_HANDLER(p_event->data.error_code);
+            break;
+
+        default:
+            break;
+    }
+}
+*/
+//---------------------------------------------------
+//串口初始化
+static void uart_init(void)
+{
+/*
+    uint32_t                     err_code;
+    const app_uart_comm_params_t comm_params =
+    {
+        RX_PIN_NUMBER,
+        TX_PIN_NUMBER,
+        RTS_PIN_NUMBER,
+        CTS_PIN_NUMBER,
+        APP_UART_FLOW_CONTROL_DISABLED,
+        false,
+        UART_BAUDRATE_BAUDRATE_Baud115200
+    };
+
+    APP_UART_FIFO_INIT( &comm_params,
+                       UART_RX_BUF_SIZE,
+                       UART_TX_BUF_SIZE,
+                       uart_event_handle,
+                       APP_IRQ_PRIORITY_LOW,
+                       err_code);
+    APP_ERROR_CHECK(err_code);
+    */
+}
+//-------------------------------------------------------
 
 /**@brief Function for initializing buttons and leds.
  *
@@ -804,10 +929,12 @@ void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 /**@brief Function for application main entry.
  */
 int main(void)
-{
+{ 
     uint32_t err_code;
     bool erase_bonds;
 	//-----------------------------------------------
+	
+	
 	//eric-han:test gpioe ppi
 		uint32_t in_evt_addr;
     uint32_t out_task_addr;
@@ -838,7 +965,12 @@ int main(void)
 	nrf_drv_gpiote_out_task_enable(5);
 	nrf_drv_gpiote_in_event_enable(01, false);
 //------------------------------------------------------------------
-		timers_init();
+	//uart_init();
+	eric_uart_Init();
+
+	timers_init();
+		
+
 
     // Initialize.
     ble_stack_init();
@@ -847,10 +979,10 @@ int main(void)
 	
     device_manager_init(erase_bonds);
     gap_params_init();
-    advertising_init();
     services_init();
+	advertising_init();
     conn_params_init();
-
+ 
     // Start execution.
     application_timers_start();
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
@@ -859,6 +991,11 @@ int main(void)
     // Enter main loop.
     for (;;)
     {
+			  if(rece_flag==1)
+				{
+					rece_dispatch(buffer);
+					rece_flag=0;
+				}
         power_manage();
     }
 }

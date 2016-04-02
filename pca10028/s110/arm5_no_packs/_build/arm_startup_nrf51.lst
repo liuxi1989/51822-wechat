@@ -342,7 +342,7 @@ define="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 513" --predefine
 ="_RTE_ SETA 1" --predefine="NRF51 SETA 1" --predefine="BLE_STACK_SUPPORT_REQD 
 SETA 1" --predefine="S110 SETA 1" --predefine="BOARD_PCA10028 SETA 1" --predefi
 ne="SOFTDEVICE_PRESENT SETA 1" --predefine="NRF51 SETA 1" --predefine="SWI_DISA
-BLE0 SETA 1" --list=.\_build\arm_startup_nrf51.lst RTE\Device\nRF51422_xxAC\arm
+BLE0 SETA 1" --list=.\_build\arm_startup_nrf51.lst RTE\Device\nRF51822_xxAA\arm
 _startup_nrf51.s
 
 
@@ -354,7 +354,7 @@ STACK 00000000
 
 Symbol: STACK
    Definitions
-      At line 40 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 40 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: STACK unused
@@ -362,7 +362,7 @@ Stack_Mem 00000000
 
 Symbol: Stack_Mem
    Definitions
-      At line 41 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 41 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: Stack_Mem unused
@@ -370,10 +370,10 @@ __initial_sp 00000800
 
 Symbol: __initial_sp
    Definitions
-      At line 42 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 42 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 65 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 235 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 65 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 235 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 3 symbols
 
@@ -386,7 +386,7 @@ HEAP 00000000
 
 Symbol: HEAP
    Definitions
-      At line 50 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 50 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: HEAP unused
@@ -394,7 +394,7 @@ Heap_Mem 00000000
 
 Symbol: Heap_Mem
    Definitions
-      At line 52 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 52 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: Heap_Mem unused
@@ -402,17 +402,17 @@ __heap_base 00000000
 
 Symbol: __heap_base
    Definitions
-      At line 51 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 51 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 236 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 236 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: __heap_base used once
 __heap_limit 00000800
 
 Symbol: __heap_limit
    Definitions
-      At line 53 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 53 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 237 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 237 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: __heap_limit used once
 4 symbols
 
@@ -425,7 +425,7 @@ RESET 00000000
 
 Symbol: RESET
    Definitions
-      At line 60 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 60 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: RESET unused
@@ -433,19 +433,19 @@ __Vectors 00000000
 
 Symbol: __Vectors
    Definitions
-      At line 65 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 65 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 61 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 118 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 61 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 118 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 __Vectors_End 000000C0
 
 Symbol: __Vectors_End
    Definitions
-      At line 116 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 116 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 62 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 118 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 62 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 118 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 3 symbols
 
@@ -458,7 +458,7 @@ Relocatable symbols
 
 Symbol: .text
    Definitions
-      At line 120 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 120 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: .text unused
@@ -466,25 +466,25 @@ ADC_IRQHandler 00000024
 
 Symbol: ADC_IRQHandler
    Definitions
-      At line 208 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 208 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 90 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 183 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 90 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 183 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 CCM_AAR_IRQHandler 00000024
 
 Symbol: CCM_AAR_IRQHandler
    Definitions
-      At line 216 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 216 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 98 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 191 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 98 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 191 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 Default_Handler 00000024
 
 Symbol: Default_Handler
    Definitions
-      At line 175 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 175 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
       None
 Comment: Default_Handler unused
@@ -492,88 +492,88 @@ ECB_IRQHandler 00000024
 
 Symbol: ECB_IRQHandler
    Definitions
-      At line 215 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 215 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 97 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 190 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 97 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 190 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 GPIOTE_IRQHandler 00000024
 
 Symbol: GPIOTE_IRQHandler
    Definitions
-      At line 207 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 207 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 89 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 182 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 89 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 182 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 HardFault_Handler 0000001C
 
 Symbol: HardFault_Handler
    Definitions
-      At line 158 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 158 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 68 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 68 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 
 
 ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 159 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 159 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 LPCOMP_IRQHandler 00000024
 
 Symbol: LPCOMP_IRQHandler
    Definitions
-      At line 220 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 220 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 102 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 195 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 102 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 195 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 NMI_Handler 0000001A
 
 Symbol: NMI_Handler
    Definitions
-      At line 153 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 153 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 67 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 154 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 67 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 154 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 POWER_CLOCK_IRQHandler 00000024
 
 Symbol: POWER_CLOCK_IRQHandler
    Definitions
-      At line 202 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 202 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 83 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 177 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 83 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 177 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 PendSV_Handler 00000020
 
 Symbol: PendSV_Handler
    Definitions
-      At line 166 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 166 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 79 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 167 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 79 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 167 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 QDEC_IRQHandler 00000024
 
 Symbol: QDEC_IRQHandler
    Definitions
-      At line 219 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 219 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 101 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 194 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 101 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 194 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 RADIO_IRQHandler 00000024
 
 Symbol: RADIO_IRQHandler
    Definitions
-      At line 203 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 203 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 84 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 178 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 84 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 178 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 RNG_IRQHandler 00000024
 
@@ -585,64 +585,64 @@ ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 214 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 214 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 96 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 189 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 96 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 189 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 RTC0_IRQHandler 00000024
 
 Symbol: RTC0_IRQHandler
    Definitions
-      At line 212 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 212 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 94 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 187 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 94 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 187 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 RTC1_IRQHandler 00000024
 
 Symbol: RTC1_IRQHandler
    Definitions
-      At line 218 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 218 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 100 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 193 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 100 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 193 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 Reset_Handler 00000000
 
 Symbol: Reset_Handler
    Definitions
-      At line 128 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 128 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 66 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 129 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 66 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 129 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SPI0_TWI0_IRQHandler 00000024
 
 Symbol: SPI0_TWI0_IRQHandler
    Definitions
-      At line 205 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 205 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 86 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 180 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 86 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 180 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SPI1_TWI1_IRQHandler 00000024
 
 Symbol: SPI1_TWI1_IRQHandler
    Definitions
-      At line 206 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 206 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 87 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 181 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 87 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 181 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SVC_Handler 0000001E
 
 Symbol: SVC_Handler
    Definitions
-      At line 162 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 162 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 76 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 163 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 76 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 163 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 
 
@@ -654,55 +654,55 @@ SWI0_IRQHandler 00000024
 
 Symbol: SWI0_IRQHandler
    Definitions
-      At line 221 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 221 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 103 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 196 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 103 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 196 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SWI1_IRQHandler 00000024
 
 Symbol: SWI1_IRQHandler
    Definitions
-      At line 222 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 222 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 104 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 197 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 104 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 197 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SWI2_IRQHandler 00000024
 
 Symbol: SWI2_IRQHandler
    Definitions
-      At line 223 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 223 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 105 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 198 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 105 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 198 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SWI3_IRQHandler 00000024
 
 Symbol: SWI3_IRQHandler
    Definitions
-      At line 224 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 224 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 106 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 199 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 106 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 199 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SWI4_IRQHandler 00000024
 
 Symbol: SWI4_IRQHandler
    Definitions
-      At line 225 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 225 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 107 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 200 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 107 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 200 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SWI5_IRQHandler 00000024
 
 Symbol: SWI5_IRQHandler
    Definitions
-      At line 226 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 226 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 108 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 201 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 108 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 201 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 SysTick_Handler 00000022
 
@@ -714,64 +714,64 @@ Symbol: SysTick_Handler
 ARM Macro Assembler    Page 5 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 170 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 170 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 80 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 171 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 80 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 171 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 TEMP_IRQHandler 00000024
 
 Symbol: TEMP_IRQHandler
    Definitions
-      At line 213 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 213 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 95 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 188 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 95 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 188 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 TIMER0_IRQHandler 00000024
 
 Symbol: TIMER0_IRQHandler
    Definitions
-      At line 209 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 209 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 91 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 184 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 91 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 184 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 TIMER1_IRQHandler 00000024
 
 Symbol: TIMER1_IRQHandler
    Definitions
-      At line 210 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 210 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 92 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 185 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 92 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 185 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 TIMER2_IRQHandler 00000024
 
 Symbol: TIMER2_IRQHandler
    Definitions
-      At line 211 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 211 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 93 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 186 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 93 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 186 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 UART0_IRQHandler 00000024
 
 Symbol: UART0_IRQHandler
    Definitions
-      At line 204 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 204 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 85 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 179 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 85 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 179 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 WDT_IRQHandler 00000024
 
 Symbol: WDT_IRQHandler
    Definitions
-      At line 217 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 217 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 99 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
-      At line 192 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 99 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+      At line 192 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 
 
@@ -790,49 +790,49 @@ Heap_Size 00000800
 
 Symbol: Heap_Size
    Definitions
-      At line 47 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 47 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 52 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 52 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: Heap_Size used once
 NRF_POWER_RAMONB_ADDRESS 40000554
 
 Symbol: NRF_POWER_RAMONB_ADDRESS
    Definitions
-      At line 125 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 125 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 140 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 140 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: NRF_POWER_RAMONB_ADDRESS used once
 NRF_POWER_RAMON_ADDRESS 40000524
 
 Symbol: NRF_POWER_RAMON_ADDRESS
    Definitions
-      At line 124 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 124 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 135 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 135 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: NRF_POWER_RAMON_ADDRESS used once
 NRF_POWER_RAMONx_RAMxON_ONMODE_Msk 00000003
 
 Symbol: NRF_POWER_RAMONx_RAMxON_ONMODE_Msk
    Definitions
-      At line 126 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 126 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 133 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 133 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: NRF_POWER_RAMONx_RAMxON_ONMODE_Msk used once
 Stack_Size 00000800
 
 Symbol: Stack_Size
    Definitions
-      At line 37 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 37 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 41 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 41 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: Stack_Size used once
 __Vectors_Size 000000C0
 
 Symbol: __Vectors_Size
    Definitions
-      At line 118 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 118 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 63 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 63 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: __Vectors_Size used once
 6 symbols
 
@@ -845,17 +845,17 @@ SystemInit 00000000
 
 Symbol: SystemInit
    Definitions
-      At line 130 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 130 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 145 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 145 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: SystemInit used once
 __main 00000000
 
 Symbol: __main
    Definitions
-      At line 131 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 131 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
    Uses
-      At line 147 in file RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+      At line 147 in file RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 Comment: __main used once
 2 symbols
 396 symbols in table
